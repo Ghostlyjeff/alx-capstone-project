@@ -9,11 +9,19 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+import os  
+
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+
+# Other settings...
+
+#STATIC_ROOT setting
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# The directory where you store your static files before collection
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,9 +31,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dx01t_dwixx-28rcnaw4%@v-^pazk(f=b(yuuvsfs1k_dza*=o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -72,8 +79,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_blog.wsgi.application'
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
-ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']
 
 
 
@@ -130,9 +137,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -140,3 +149,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.User"
+
+
