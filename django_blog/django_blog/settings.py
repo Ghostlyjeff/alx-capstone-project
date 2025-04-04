@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-dx01t_dwixx-28rcnaw4%@v-^pazk(f=b(yuuvsfs1k_dza*=o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -71,6 +71,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_blog.wsgi.application'
+
+
+ALLOWED_HOSTS = ['yourusername.pythonanywhere.com']
+
 
 
 # Database
@@ -136,4 +140,3 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "users.User"
-
