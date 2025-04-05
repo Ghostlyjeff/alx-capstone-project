@@ -1,175 +1,195 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naija Blog | Issues in Nigeria</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nigeria’s Underappreciation of the Tech Industry</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <script src="{% static 'js/script.js' %}" defer></script>
 
-    <!-- Linking the CSS for styling -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/script.js' %}" defer></script>
-    
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e8f0f7, #f4f8fb);
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
 
-        /* Header Section */
-        header {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
+    nav {
+      background-color: #1a1a1a;
+      padding: 10px 0;
+    }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
 
-        /* Navigation Bar */
-        nav {
-            background-color: #333;
-            padding: 10px;
-        }
+    nav ul li {
+      position: relative;
+      margin: 0 20px;
+    }
 
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-        }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+      transition: 0.3s ease;
+    }
 
-        nav ul li {
-            margin: 0 15px;
-            position: relative;
-        }
+    nav ul li:hover > a {
+      color: #00bfff;
+    }
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.1em;
-        }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 40px;
+      background-color: #2c2c2c;
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      min-width: 160px;
+      z-index: 1000;
+    }
 
-        /* Dropdown Menu */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #333;
-            min-width: 160px;
-            z-index: 1;
-        }
+    .dropdown-content a {
+      color: #fff;
+      padding: 10px 15px;
+      display: block;
+      text-decoration: none;
+    }
 
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
+    .dropdown-content a:hover {
+      background-color: #00bfff;
+    }
 
-        .dropdown-content a {
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            display: block;
-        }
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
 
-        .dropdown-content a:hover {
-            background-color: #555;
-        }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #ffffffee;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
 
-        /* Main Content */
-        .container {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
-        }
+    h1 {
+      color: #007BFF;
+      margin-bottom: 20px;
+    }
 
-        .post {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid #007BFF;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
+    h2 {
+      color: #444;
+      margin-top: 30px;
+    }
 
-        .post h2 {
-            margin-top: 0;
-            color: #007BFF;
-        }
+    img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
 
-        .meta {
-            font-size: 0.9em;
-            color: #666;
-            margin-bottom: 10px;
-        }
+    a {
+      color: #007BFF;
+    }
 
-        .no-posts {
-            text-align: center;
-            color: #999;
-        }
+    a:hover {
+      text-decoration: underline;
+    }
 
-        footer {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            margin-top: 30px;
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 50px;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- Header -->
-    <header>
-        <h1>Naija Blog: Issues & Solutions</h1>
-    </header>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li class="dropdown">
+        <a href="#">Topics</a>
+        <div class="dropdown-content">
+          <a href="#">Tech in Nigeria</a>
+          <a href="#">Education</a>
+          <a href="#">Politics</a>
+          <a href="#">Health</a>
+        </div>
+      </li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
 
-    <!-- Navigation Bar -->
-    <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li class="dropdown">
-                <a href="#">Categories</a>
-                <div class="dropdown-content">
-                    <a href="#">Politics</a>
-                    <a href="#">Technology</a>
-                    <a href="#">Health</a>
-                    <a href="#">Education</a>
-                </div>
-            </li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+  <!-- Blog Content -->
+  <div class="container">
+    <h1>Nigeria’s Underappreciation of the Tech Industry</h1>
 
-    <!-- Main Content Container -->
-    <div class="container">
-        {% if posts %}
-            {% for post in posts %}
-                <div class="post">
-                    <h2>{{ post.title }}</h2>
-                    <p class="meta">By {{ post.author.username }} | Category: {{ post.category.name }}</p>
-                    <p>{{ post.content|linebreaks }}</p>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p class="no-posts">No posts available at the moment. Please check back later.</p>
-        {% endif %}
-    </div>
+    <img src="https://images.unsplash.com/photo-1624378430572-1dfd334ecf9e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Tech developers working together" />
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Naija Blog. Alx capstone.</p>
-    </footer>
+    <p>
+      Nigeria has produced globally recognized tech startups like <strong>Flutterwave</strong> and <strong>Paystack</strong>, yet the ecosystem continues to suffer from a lack of support. With a youthful population and immense talent, the potential is there—but the recognition is not.
+    </p>
+
+    <h2>Why Tech Matters</h2>
+    <p>
+      The <a href="https://www.brookings.edu/articles/africas-digital-economy-the-untapped-potential/" target="_blank">Brookings Institution</a> reports that Africa’s digital economy could contribute $180 billion to the continent’s GDP by 2025. Nigeria stands to gain massively if the tech sector is empowered with policy and infrastructure.
+    </p>
+
+    <img src="https://images.unsplash.com/photo-1614851099424-7666a53fe0d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="African coder working" />
+
+    <ul>
+      <li>Tech provides scalable employment for Nigeria's youth</li>
+      <li>It fosters innovation in sectors like health and agriculture</li>
+      <li>It positions Nigeria on the global digital map</li>
+    </ul>
+
+    <h2>The Consequences of Neglect</h2>
+    <p>
+      By sidelining tech, Nigeria risks growing unemployment, loss of global competitiveness, and brain drain as skilled developers move abroad for better opportunities.
+    </p>
+
+    <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Nigerian youth at tech hub" />
+
+    <h2>Solutions</h2>
+    <ol>
+      <li><strong>Tech-friendly policies:</strong> Clear regulations, digital rights protection</li>
+      <li><strong>Education:</strong> Fund CS programs in schools and support local bootcamps</li>
+      <li><strong>Partnerships:</strong> Enable collaborations between tech startups and government</li>
+      <li><strong>Infrastructure:</strong> Build reliable internet, data centers, and developer spaces</li>
+    </ol>
+
+    <h2>Conclusion</h2>
+    <p>
+      Nigeria’s future lies in innovation. Supporting tech now means securing progress, employment, and relevance for years to come.
+    </p>
+
+    <h3>References</h3>
+    <ul>
+      <li><a href="https://www.brookings.edu/articles/africas-digital-economy-the-untapped-potential/" target="_blank">Brookings – Africa’s Digital Economy</a></li>
+      <li><a href="https://www.nigerianstat.gov.ng/" target="_blank">NBS – Labour Data</a></li>
+      <li><a href="https://qz.com/africa/1992526/why-nigerias-tech-ecosystem-still-struggles-to-grow" target="_blank">Quartz – Tech Ecosystem Challenges</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Naija Blog | ALX Capstone Project</p>
+  </footer>
 
 </body>
 </html>
