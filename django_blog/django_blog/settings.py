@@ -16,7 +16,6 @@ import os
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 # Other settings...
-
 #STATIC_ROOT setting
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -138,7 +137,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
